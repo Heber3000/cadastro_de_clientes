@@ -5,7 +5,6 @@ import pandas as pd
 
 
 
-
 # janela
 
 janela = tk.Tk()
@@ -40,12 +39,11 @@ def exporta_clientes():
     c = conexao.cursor()
 
     #inserir dados nas tabelas:
-    c.execute("SELECT *, Oid FROM clientes")
+    c.execute("SELECT *, oid FROM clientes")
     clientes_cadastrados = c.fetchall()
     # print(clientes_cadastrados)
     clientes_cadastrados=pd.DataFrame(clientes_cadastrados,columns=['nome','sobrenome','email','telefone','Id_banco'])
-    clientes_cadastrados.to_excel('clientes.xlsx')
-
+    clientes_cadastrados.to_html('clientes.html')
     conexao.commit()
     conexao.close()
 
